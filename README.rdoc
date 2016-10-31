@@ -1,0 +1,39 @@
+= READ ME
+
+1. Prerequisites:
+   * Ruby v.2.2.4p230
+   * Rails v.4.2.5.1
+   * Chrome (required for PDF report download)
+
+2. Database configurations:
+   * Database: MySQL
+   * Configurations:
+     * config/database.yml: Any configurations for the local database server must be updated in the &defaults block definition
+	   * username
+	   * password
+	   * host
+	   * port
+	* Initialization:
+	  1. "rake db:create"
+	  2. "rake db:setup"
+	     * Setup handles seeding database with initial admin user:
+		   * Username: admin
+		   * Email: my.admin@email.com
+		   * Password: password
+	* IMPORTANT: The MySQL adapter gem for rails has caused issues in the past. I used a fresh installation or ruby and rails and had no issues with the adapter, but it should be considered.
+			
+3. Source code configurations:
+   * Configurations:
+     * Ensure database.yml is properly configured (explained previously in step 2)
+   * Initialization:
+     * Bundle install the unzipped application
+	 * Run application: 
+	   * rails s -p 3000
+	 * Note: If any issues occur about migrations being out of date when running the application (might happen en Rails version < 4), migration files can be deleted.			
+   * Testing Suite:
+     * Backend:
+	   * Run "bundle exec rspec spec"
+	 * Frontend:
+	   * Run "bundle exec spec:javascript"
+	   * Note: Frontend tests can also be accessed through browser. Once server is running go to "/specs" to run Jasmine specs.
+			   This might be required if "PhantomJS" fails to load in your local machine (due to missing cURL or wget commands)

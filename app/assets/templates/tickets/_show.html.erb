@@ -1,0 +1,70 @@
+<h1>View Ticket
+	<small ng-show="ticket.status != 'Closed' && (currentUser.isAdmin || currentUser.user.id == ticket.user_id)">
+		<a ng-href="#/tickets/{{ticket.id}}/edit">Edit</a>
+	</small>
+	<small>| <a ng-href="#/tickets">Back</a></small>
+</h1>
+
+<div class="row show-view">
+	<div class="col-sm-8">
+
+		<div class="row">
+			<!-- title -->
+			<div class="form-group col-sm-8">
+				<label for="ticketTitle">Title:</label>
+				<p class="form-control-static">{{ticket.title}}</p>
+			</div>
+
+			<!-- category -->
+			<div class="form-group col-sm-4">
+				<label for="ticketCategory">Category:</label>
+				<p class="form-control-static">{{ticket.category}}</p>
+			</div>
+		</div>
+
+		<!-- description -->
+		<div class="form-group">
+			<label for="ticketDescription">Description:</label>
+			<p class="form-control-static">{{ticket.description}}</p>
+		</div>
+
+	</div>
+
+	<!-- meta data -->
+	<div class="col-sm-4 details-right">
+		<h4>Details</h4>
+
+		<!-- owner -->
+		<div class="form-group">
+			<label for="ticketOwner">Owner:</label>
+			<p class="form-control-static">{{ticket.owner}}</p>
+		</div>
+
+		<!-- status -->
+		<div class="row">
+			<div class="form-group col-sm-6">
+				<label for="ticketStatus">Status:</label>
+				<p class="form-control-static">{{ticket.status}}</p>
+			</div>
+
+			<!-- toggle status -->
+			<div class="col-sm-6" ng-show="ticket.status == 'Open' && currentUser.isAdmin">
+				<div class="btn btn-block btn-primary" ng-click="closeTicket()">Close</div>
+			</div>
+		</div>
+
+		<!-- closed by/on -->
+		<div class="row" ng-show="ticket.status == 'Closed'">
+			<div class="form-group col-sm-6">
+				<label for="ticketStatus">Closed By:</label>
+				<p class="form-control-static">{{ticket.closer}}</p>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label for="ticketStatus">Closed On:</label>
+				<p class="form-control-static">{{ticket.closed_on.toString() | date: "short"}}</p>
+			</div>
+		</div>
+
+	</div>
+</div>

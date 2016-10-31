@@ -1,0 +1,12 @@
+module Requests
+	module JsonHelpers
+		def json
+			JSON.parse(response.body)
+		end
+	end
+end
+
+# include json parse methods
+RSpec.configure do |config|
+  config.include Requests::JsonHelpers, :type => :controller
+end

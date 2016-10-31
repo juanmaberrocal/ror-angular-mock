@@ -1,0 +1,31 @@
+<h1>View User	<small><a ng-href="#/users">Back</a></small></h1>
+
+<div class="row show-view">
+	<div class="col-sm-8">
+
+		<div class="row">
+			<!-- username -->
+			<div class="form-group col-sm-6">
+				<label for="ticketTitle">Username:</label>
+				<p class="form-control-static">{{user.username}}</p>
+			</div>
+
+			<!-- email -->
+			<div class="form-group col-sm-6">
+				<label for="ticketCategory">Email:</label>
+				<p class="form-control-static">{{user.email}}</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-sm-4">
+		<h4>Admin Status</h4>
+
+		<!-- toogle if admin or not -->
+		<div class="btn-group" role="group">
+			<button type="button" class="btn" ng-class="user.admin ? 'btn-primary' : 'btn-default'" ng-disabled="currentUser.user.id == user.id" ng-click="toggleAdmin(true)">On</button>
+			<button type="button" class="btn" ng-class="user.admin ? 'btn-default' : 'btn-primary'" ng-disabled="currentUser.user.id == user.id" ng-click="toggleAdmin(false)">Off</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+<h1>{{currState.action == '/new' ? 'New' : 'Edit'}} Ticket
+	<small><a ng-click="goBack()">Cancel</a></small>
+</h1>
+
+<form id="ticketForm" name="ticketForm" role="form" ng-submit="ticketSubmit(ticket)">
+	<!-- error messages -->
+	<div class="bg-danger" ng-show="ticketErrors.errors">
+		<ul>
+			<li class="text-capitalize" ng-repeat="(error, messages) in ticketErrors.messages">
+				{{error}}:
+				<ul>
+					<li ng-repeat="message in messages">{{message}}</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="row">
+				<!-- title -->
+				<div class="form-group has-feedback col-sm-8" ng-class="{ 'has-success': ticketForm.ticketTitle.$touched && ticketForm.ticketTitle.$valid, 'has-error': ticketForm.ticketTitle.$touched && ticketForm.ticketTitle.$invalid }">
+					<label for="ticketTitle" class="sr-only">Title:</label>
+					<input type="text" id="ticketTitle" name="ticketTitle" class="form-control" placeholder="Title" required ng-model="ticket.title" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="ticketForm.ticketTitle.$touched && ticketForm.ticketTitle.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="ticketForm.ticketTitle.$touched && ticketForm.ticketTitle.$invalid"></span>
+				</div>
+
+				<!-- category -->
+				<div class="form-group col-sm-4" ng-class="{ 'has-success': ticketForm.ticketCategory.$touched && ticketForm.ticketCategory.$valid, 'has-error': ticketForm.ticketCategory.$touched && ticketForm.ticketCategory.$invalid }">
+					<label for="ticketCategory" class="sr-only">Category:</label>
+					<select id="ticketCategory" name="ticketCategory" class="form-control" required ng-model="ticket.category">
+						<option ng-repeat="category in ticketCategories" ng-value="{{category}}">{{category}}</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- description -->
+			<div class="form-group">
+				<label for="ticketDescription" class="sr-only">Description:</label>
+				<textarea id="ticketDescription" name="ticketDescription" class="form-control" placeholder="Description" rows="3" ng-model="ticket.description"></textarea>
+			</div>
+
+			<!-- owner -->
+			<input type="hidden" id="ticketOwner" name="ticketOwner" ng-model="ticket.user_id" ng-init="ticket.user_id = currentUser.user.id">
+
+			<!-- status -->
+			<input type="hidden" id="ticketStatus" name="ticketStatus" ng-model="ticket.status">
+
+			<!-- submit -->
+			<input type="submit" id="ticketSubmitBtn" name="ticketSubmitBtn" class="btn btn-primary btn-block" value="{{currState.action == '/new' ? 'Submit' : 'Update'}}" ng-disabled="ticketForm.$invalid"></button>
+		</div>
+	</div>
+
+</form>

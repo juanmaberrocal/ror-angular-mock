@@ -1,0 +1,29 @@
+<h1>User Dashboard</h1>
+
+<div class="row">
+	<div class="col-xs-12">
+		
+		<!-- render table of tickets -->
+		<div class="table-response">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Is Admin</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in users" ng-class="{ info: user.admin }" ng-click="viewUser(user.id)">
+						<td>{{user.username}}</td>
+						<td>{{user.email}}</td>
+						<td class="text-center"><span class="glyphicon" ng-class="user.admin ? 'glyphicon-ok' : 'glyphicon-remove'"></span></td>
+						<td class="text-center" ng-click="destroyUser($event, $index, user.id, currentUser.user.id)"><span class="glyphicon" ng-class="currentUser.user.id == user.id ? 'glyphicon-ban-circle' : 'glyphicon-trash'"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3 center-form">
+
+		<!-- flash message -->
+		<div ng-class="{ 'bg-info': flashMessage.info, 'bg-success': flashMessage.success, 'bg-danger': flashMessage.error }">
+			<strong>{{flashMessage.message}}</strong>
+		</div>
+		
+		<!-- login form -->
+		<div class="login-form" ng-show="formToggle.login">
+			<form id="loginForm" name="loginForm" role="form" ng-submit="loginSubmit(loginForm)" ng-init="loginForm={}">
+				<!-- login only requires email and password -->
+				<h4>Log in with your email address</h4>
+
+				<!-- error messages -->
+				<div class="bg-danger" ng-show="loginErrors.errors">
+					<ul>
+						<li ng-repeat="error in loginErrors.messages">{{error}}</li>
+					</ul>
+				</div>
+
+				<!-- email -->
+				<div class="form-group has-feedback" ng-class="{ 'has-success': loginForm.loginEmail.$touched && loginForm.loginEmail.$valid, 'has-error': loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid }">
+					<label for="loginEmail" class="sr-only">Email:</label>
+					<input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Email" required ng-model="loginForm.email" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.loginEmail.$touched && loginForm.loginEmail.$invalid"></span>
+				</div>
+
+				<!-- password -->
+				<div class="form-group has-feedback" ng-class="{ 'has-success': loginForm.loginPassword.$touched && loginForm.loginPassword.$valid, 'has-error': loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid }">
+					<label for="loginPassword" class="sr-only">Password:</label>
+					<input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Password" required minlength="8" ng-model="loginForm.password" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.loginPassword.$touched && loginForm.loginPassword.$invalid"></span>
+				</div>
+
+				<!-- login -->
+				<input type="submit" id="loginSubmitBtn" name="loginSubmitBtn" class="btn btn-primary btn-block text-uppercase" value="Log In" ng-disabled="loginForm.$invalid"></button>
+			</form>
+
+			<!-- signup toogle -->
+			<br/>
+			<span class="help-block text-center">Not registered yet? <a ng-click="toggleForm('signup')">Sign up here</a>!</span>
+		</div>
+
+		<!-- signup form -->
+		<div class="signup-form" ng-show="formToggle.signup">
+			<form id="signupForm" name="signupForm" role="form" ng-submit="signupSubmit(signupForm)" ng-init="signupForm={}">
+				<!-- signup requires email, password, and username -->
+				<h4>Sign up with your email</h4>
+
+				<!-- error messages -->
+				<div class="bg-danger" ng-show="signupErrors.errors">
+					<ul>
+						<li ng-repeat="error in signupErrors.messages">{{error}}</li>
+					</ul>
+				</div>
+
+				<!-- email -->
+				<div class="form-group has-feedback" ng-class="{ 'has-success': signupForm.signupEmail.$touched && signupForm.signupEmail.$valid, 'has-error': signupForm.signupEmail.$touched && signupForm.signupEmail.$invalid }">
+					<label for="signupEmail" class="sr-only">Email:</label>
+					<input type="email" id="signupEmail" name="signupEmail" class="form-control" placeholder="Email" required ng-model="signupForm.email" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.signupEmail.$touched && signupForm.signupEmail.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.signupEmail.$touched && signupForm.signupEmail.$invalid"></span>
+				</div>
+
+				<!-- username -->
+				<div class="form-group has-feedback" ng-class="{ 'has-success': signupForm.signupUsername.$touched && signupForm.signupUsername.$valid, 'has-error': signupForm.signupUsername.$touched && signupForm.signupUsername.$invalid }">
+					<label for="signupUsername" class="sr-only">Email:</label>
+					<input type="text" id="signupUsername" name="signupUsername" class="form-control" placeholder="Username" required ng-model="signupForm.username" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.signupUsername.$touched && signupForm.signupUsername.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.signupUsername.$touched && signupForm.signupUsername.$invalid"></span>
+				</div>
+
+				<!-- password -->
+				<div class="form-group has-feedback" ng-class="{ 'has-success': signupForm.signupPassword.$touched && signupForm.signupPassword.$valid, 'has-error': signupForm.signupPassword.$touched && signupForm.signupPassword.$invalid }">
+					<label for="signupPassword" class="sr-only">Password:</label>
+					<input type="password" id="signupPassword" name="signupPassword" class="form-control" placeholder="Password" required  minlength="8" ng-model="signupForm.password" />
+					<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.signupPassword.$touched && signupForm.signupPassword.$valid"></span>
+					<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.signupPassword.$touched && signupForm.signupPassword.$invalid"></span>
+				</div>
+
+				<!-- signup -->
+				<input type="submit" id="signupSubmitBtn" name="signupSubmitBtn" class="btn btn-primary btn-block text-uppercase" value="Sign Up" ng-disabled="signupForm.$invalid"></button>				
+			</form>
+
+			<!-- login toogle -->
+			<br/>
+			<span class="help-block text-center">Already registered? <a ng-click="toggleForm('login')">Log in now!</a></span>
+		</div>
+
+	</div>
+</div>

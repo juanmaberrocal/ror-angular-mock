@@ -1,0 +1,46 @@
+<h1>Ticket Dashboard 
+	<small><a ng-href="#/tickets/new">New Ticket</a></small>
+	<small ng-show="currentUser.isAdmin">| <a ng-href="#/report">Report</a></small>
+</h1>
+
+<div class="row">
+	<div class="col-xs-12">
+
+		<!-- search -->
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					<input type="text" id="searchTickets" name="searchTickets" class="form-control" placeholder="Search Tickets..." ng-model="searchTickets" />
+				</div>
+			</div>
+		</form>
+		
+		<!-- render table of tickets -->
+		<div class="table-response">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Ticket</th>
+						<th>Owner</th>
+						<th>Status</th>
+						<th>Created On</th>
+						<th ng-show="{{currentUser.isAdmin}}">&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="ticket in tickets | filter: searchTickets" ng-class="{ active: ticket.status == 'Closed' }" ng-click="viewTicket(ticket.id)">
+						<td>{{ticket.category}}</td>
+						<td>{{ticket.title}}</td>
+						<td>{{ticket.owner}}</td>
+						<td>{{ticket.status}}</td>
+						<td>{{ticket.created_at.toString() | date: "short" }}</td>
+						<td class="text-center" ng-show="{{currentUser.isAdmin}}" ng-click="destroyTicket($event, $index, ticket.id)"><span class="glyphicon glyphicon-trash"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

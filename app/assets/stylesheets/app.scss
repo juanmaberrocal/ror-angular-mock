@@ -1,0 +1,56 @@
+/* app-wide vars */
+$border-color: #e7e7e7;
+$bg-color: #f8f8f8;
+
+/* app css */
+body {
+	> nav.navbar {
+		margin-bottom: 0;
+		border-color: $border-color;
+		background-color: $bg-color;
+
+		a {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	> div.container-fluid {
+		margin-top: 50px;
+
+		a, table tbody tr {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		/* show views */
+		div.show-view {
+			label {
+				margin-bottom: 0;
+			}
+
+			p.form-control-static {
+				padding-top: 0;
+			}
+
+			/* special css for right side details 
+			   used in tickets show view */
+			/* only display border before col-spans collapse to 100% */
+			@media (min-width: 768px) {
+				div.details-right {
+					border-left: 1px solid $border-color;
+				}		
+			}
+		}
+	}
+
+	> footer {
+		margin-top: 15px;
+		padding: 10px 0;
+		border-top: 1px solid $border-color;
+		background-color: $bg-color;
+		color: #777;
+	}
+}

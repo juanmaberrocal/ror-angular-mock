@@ -1,0 +1,30 @@
+<div id="ticketsReport">
+	<h1>Tickets Closed From: <small>{{dateStart | date: "shortDate"}} - {{dateToday | date: "shortDate"}}</small></h1>
+
+	<!-- render table of tickets -->
+	<div class="table-response">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Ticket</th>
+					<th>Owner</th>
+					<th>Created On</th>
+					<th>Closed By</th>
+					<th>Closed On</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="ticket in tickets">
+					<td>{{ticket.category}}</td>
+					<td>{{ticket.title}}</td>
+					<td>{{ticket.owner}}</td>
+					<td>{{ticket.created_at.toString() | date: "short" }}</td>
+					<td>{{ticket.closer }}</td>
+					<td>{{ticket.closed_on.toString() | date: "short" }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
